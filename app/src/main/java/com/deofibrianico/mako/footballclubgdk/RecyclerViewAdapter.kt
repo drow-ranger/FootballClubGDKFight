@@ -21,13 +21,13 @@ class RecyclerViewAdapter(private val context: Context, private val items: List<
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindItem(items: Item) {
             itemView.name.text = items.name
-            Glide.with(itemView.context).load(items.image).into(itemView.image)
+            Glide.with(itemView.context).asBitmap().load(items.image).into(itemView.image)
             itemView.setOnClickListener {
-                itemView.context.startActivity<DetailClubActivity>("image" to items.image, "name" to items.name)
+                itemView.context.startActivity<DetailClubActivity>("image" to items.image, "name" to items.name, "detail" to items.detail)
             }
         }
     }
